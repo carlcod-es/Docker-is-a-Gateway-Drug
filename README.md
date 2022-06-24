@@ -4,8 +4,6 @@ Talk given at DDD South West 2022
 
 ## Dooom!
 
-
-
     docker pull kasmweb/doom:1.10.0
     docker run -d --name Doooom --rm  -it --shm-size=512m -p 6901:6901 -e VNC_PW=password kasmweb/doom:1.10.0 
 
