@@ -2,6 +2,17 @@
 
 Talk given at DDD South West 2022
 
+[Slides](https://docs.google.com/presentation/d/1tXQhdrO5DL73pQaHMZhZ0Tq7D4RdxERoFKPQq6KGamw/edit#slide=id.g1358cb38f49_0_2)
+
+## Preview Framework
+
+- https://hub.docker.com/_/microsoft-dotnet-sdk
+- https://hub.docker.com/_/microsoft-dotnet-nightly-sdk/
+
+To run : 
+
+    docker run -d mcr.microsoft.com/dotnet/nightly/sdk:7.0
+
 ## Dooom!
 
     docker pull kasmweb/doom:1.10.0
