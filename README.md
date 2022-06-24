@@ -11,7 +11,15 @@ Talk given at DDD South West 2022
 
 To run : 
 
-    docker run -d mcr.microsoft.com/dotnet/nightly/sdk:7.0
+    docker pull mcr.microsoft.com/dotnet/nightly/sdk:7.0
+
+    dotnet --info
+
+Create a new app to test
+
+    dotnet new console --name appTest
+
+     dotnet run --project appTest/ 
 
 ## Dooom!
 
