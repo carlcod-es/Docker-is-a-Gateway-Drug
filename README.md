@@ -39,21 +39,20 @@ Restore the Database
 
 ## Preview Framework
 
-- https://hub.docker.com/_/microsoft-dotnet-sdk
 - https://hub.docker.com/_/microsoft-dotnet-nightly-sdk/
 
 To run : 
 
     docker pull mcr.microsoft.com/dotnet/nightly/sdk:7.0
-    docker run --name dotnet -p 2010 mcr.microsoft.com/dotnet/nightly/sdk:7.0
+    docker run mcr.microsoft.com/dotnet/nightly/sdk:7.0
+
+Create a new app
 
     dotnet --info
 
-Create a new  --shm-size=512m -p 6901:690
-
     dotnet new console --name appTest
 
-     dotnet run --project appTest/ 
+    dotnet run --project appTest/ 
 
 ## Dooom!
 
