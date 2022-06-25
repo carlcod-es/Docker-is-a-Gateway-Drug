@@ -11,6 +11,13 @@ SQL Server 2019
 
     docker run -d --name ddd_sql_server_2019 -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=SQL_password123' -v ddd_sql_system:/var/opt/mssql -p 1433:1433 mcr.microsoft.com/mssql/server:2019-latest
 
+Or from Image
+
+    docker build --tag=my_db_image ./DBContainer
+
+Then Run the image
+
+    docker run --name myDatabaseImage -p 1400:1433 --volume mydb_sqlserver:/var/opt/sqlserver -d my_db_image
 
 ## Linux Basics
 
