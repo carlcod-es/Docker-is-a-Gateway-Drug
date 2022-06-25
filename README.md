@@ -17,7 +17,7 @@ Or from Image
 
 Then Run the image
 
-    docker run --name myDatabaseImage -p 1400:1433 --volume mydb_sqlserver:/var/opt/sqlserver -d my_db_image
+    docker run --name myDatabaseImage -p 1433:1433 --volume mydb_sqlserver:/var/opt/sqlserver -d my_db_image
 
 ## Linux Basics
 
