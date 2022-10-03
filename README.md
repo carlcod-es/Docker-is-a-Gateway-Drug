@@ -19,6 +19,17 @@ Then Run the image
 
     docker run --name myDatabaseImage -p 1433:1433 --volume mydb_sqlserver:/var/opt/sqlserver -d my_db_image
 
+## Blazor Server app
+
+Or from Image
+
+    docker build --tag=my_blazor_app ./BlazorInABox
+
+Then Run the image
+
+    docker run --name blazor_app -p 5080:80 -d my_blazor_app
+
+
 ## Linux Basics
 
 Copy files to container
