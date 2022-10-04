@@ -12,7 +12,7 @@ Also as a lightning talk at DotNet South West
 
 SQL Server 2019
 
-    docker run -d --name ddd_sql_server_2019 -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=SQL_password123' -v ddd_sql_system:/var/opt/mssql -p 1433:1433 mcr.microsoft.com/mssql/server:2019-latest
+    docker run -d --name dnsw_sql_server_2019 -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=SQL_password123' -v dnsw_sql_system:/var/opt/mssql -p 1433:1433 mcr.microsoft.com/mssql/server:2019-latest
 
 Or from Image
 
@@ -20,7 +20,7 @@ Or from Image
 
 Then Run the image
 
-    docker run --name myDatabaseImage -p 1433:1433 --volume mydb_sqlserver:/var/opt/sqlserver -d my_db_image
+    docker run --name myDatabaseImage -p 1433:1433 --volume mydb_sqlserver:/var/opt/sqlserver -it -d my_db_image
 
 ## Blazor Server app
 
@@ -65,7 +65,8 @@ Restore the Database
 To run : 
 
     docker pull mcr.microsoft.com/dotnet/nightly/sdk:7.0
-    docker run mcr.microsoft.com/dotnet/nightly/sdk:7.0
+    docker run -it -d --name dotNetPreview mcr.microsoft.com/dotnet/nightly/sdk:7.0
+    docker exec -it dotNetPreview bash
 
 Create a new app
 
@@ -78,7 +79,7 @@ Create a new app
 ## Dooom!
 
     docker pull kasmweb/doom:1.9.0
-    docker run -d --name Doooom --rm  -it --shm-size=512m -p 6901:6901 -e VNC_PW=password kasmweb/doom:1.9.0 
+    docker run -d --name Doooom --rm -it --shm-size=512m -p 6901:6901 -e VNC_PW=password kasmweb/doom:1.9.0 
 
     The container is now accessible via a browser : https://127.0.0.1:6901
 
