@@ -105,25 +105,6 @@ Then Run the image
 
     docker run --name Sql_17_Filled -p 6618:1433 --volume mydb_17_filled:/var/opt/sqlserver -it -d mydb_17_filled
 
-
-## Preview Framework
-
-- https://hub.docker.com/_/microsoft-dotnet-nightly-sdk/
-
-To run : 
-
-    docker run -it -d --name dotNetPreview mcr.microsoft.com/dotnet/nightly/sdk:8.0.100-preview.4-jammy-amd64
-    docker exec -it dotNetPreview bash
-
-Create a new app
-
-    dotnet --info
-
-    dotnet new console --name appTest
-
-    dotnet run --project appTest/ 
-
-
 ## Story 3 : Running a bunch of other services
 
 To Run a container with Rabbit MQ
@@ -144,7 +125,37 @@ Imagine you've cloned the project to ./UmbracoDemo
 
 - Set your current folder to the UmbracoDemo folder
 - Make sure all the docker files in the UmbData container have the right line endings (LF)
-- run Docker compose up
+- run Docker compose up -d
+
+You can then connect to the front end using
+
+    http://localhost:5081/
+
+You can then connect to the back end using the username admin@admin.com and the password 1234567890
+
+    http://localhost:5080/umbraco
+
+
+## Story 10 - Preview Framework
+
+- https://hub.docker.com/_/microsoft-dotnet-nightly-sdk/
+
+To run : 
+
+    docker run -it -d --name dotNetPreview mcr.microsoft.com/dotnet/nightly/sdk:8.0.100-preview.4-jammy-amd64
+    docker exec -it dotNetPreview bash
+
+Create a new app
+
+    dotnet --info
+
+    dotnet new console --name appTest
+
+    dotnet run --project appTest/ 
+
+You can also connect VS Code and test the app further
+
+
 
 ## Dooom!
 
