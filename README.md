@@ -138,6 +138,14 @@ To Run a container with MongoDb
 
     docker run -d --name mongo -p 27017:27017 mongo
 
+## Story 4 - Onboarding a new developer
+
+Imagine you've cloned the project to ./UmbracoDemo
+
+- Set your current folder to the UmbracoDemo folder
+- Make sure all the docker files in the UmbData container have the right line endings (LF)
+- run Docker compose up
+
 ## Dooom!
 
     docker pull kasmweb/doom:1.9.0
