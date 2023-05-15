@@ -1,6 +1,9 @@
 # Docker-is-a-Gateway-Drug
 
-Talk given at DDD South West 2022
+Talk given at the following events
+
+- DDD South West 2022
+- .NET Cheltenham and Gloucester 2023
 
 [Slides](https://docs.google.com/presentation/d/1tXQhdrO5DL73pQaHMZhZ0Tq7D4RdxERoFKPQq6KGamw/edit#slide=id.g1358cb38f49_0_2)
 
@@ -10,17 +13,30 @@ Also as a lightning talk at DotNet South West
 
 ## Database Server
 
-SQL Server 2019
+SQL Server
 
-    docker run -d --name dnsw_sql_server_2019 -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=SQL_password123' -v dnsw_sql_system:/var/opt/mssql -p 1433:1433 mcr.microsoft.com/mssql/server:2019-latest
+    docker run -d --name dgd_sql_server_2017 -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=SQL_password123' -p 6517:1433 mcr.microsoft.com/mssql/server:2017-latest
+    docker run -d --name dgd_sql_server_2019 -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=SQL_password123' -p 6519:1433 mcr.microsoft.com/mssql/server:2019-latest
+    docker run -d --name dgd_sql_server_2022 -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=SQL_password123' -p 6522:1433 mcr.microsoft.com/mssql/server:2022-latest
+
+To connect to these servers using the ports configred, you need to use the following connection string
+
+    Server=localhost,6517;Database=master;User Id=sa;Password=SQL_password123;
+
+SQL Server Azure Sql Edge - for ARM Cpus
+
+    docker run -d --name dgd_sql_server_edge -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=SQL_password123' -p 1433:1433 mcr.microsoft.com/azure-sql-edge
 
 Or from Image
 
-    docker build --tag=my_db_image ./DBContainer
+    docker build --tag=my_db_image_empty ./DBContainer/Empty-Database
+    docker build --tag=my_db_image_filled ./DBContainer/Server-with-Database
 
 Then Run the image
 
-    docker run --name myDatabaseImage -p 1433:1433 --volume mydb_sqlserver:/var/opt/sqlserver -it -d my_db_image
+    docker run --name SqlDBEmpty -p 6617:1433 --volume mydb_sqlserver:/var/opt/sqlserver -it -d my_db_image_empty
+    docker run --name SqlDBEmpty -p 6618:1433 --volume mydb_sqlserver:/var/opt/sqlserver -it -d my_db_image_filled
+
 
 ## Blazor Server app
 
