@@ -29,13 +29,18 @@ SQL Server Azure Sql Edge - for ARM Cpus
 
 Or from Image
 
-    docker build --tag=my_db_image_empty ./DBContainer/Empty-Database
-    docker build --tag=my_db_image_filled ./DBContainer/Server-with-Database
+    docker build --tag=mydb_17_empty ./DBContainer/Empty-Database
+    docker build --tag=mydb_17_filled ./DBContainer/Server-with-Database
+
+To see al list of images you can run
+    
+    docker images
+
 
 Then Run the image
 
-    docker run --name SqlDBEmpty -p 6617:1433 --volume mydb_sqlserver:/var/opt/sqlserver -it -d my_db_image_empty
-    docker run --name SqlDBEmpty -p 6618:1433 --volume mydb_sqlserver:/var/opt/sqlserver -it -d my_db_image_filled
+    docker run --name Sql_17_Empty -p 6617:1433 --volume mydb_17_empty:/var/opt/sqlserver -it -d mydb_17_empty
+    docker run --name Sql_17_Filled -p 6618:1433 --volume mydb_17_filled:/var/opt/sqlserver -it -d mydb_17_filled
 
 
 ## Blazor Server app
