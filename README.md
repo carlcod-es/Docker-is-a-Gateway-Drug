@@ -11,7 +11,7 @@ Also as a lightning talk at DotNet South West
 
 [Slides](https://docs.google.com/presentation/d/1TLiaYMO5733RNAkDaAa74AgXPE6cu_xbR4a-YqWzBNc/edit#slide=id.g13779d8b915_0_12)
 
-## Database Server
+## Story 1 : Database Server directly from Iamge
 
 SQL Server
 
@@ -26,26 +26,9 @@ To connect to these servers using the ports configred, you need to use the follo
 SQL Server Azure Sql Edge - for ARM Cpus
 
     docker run -d --name dgd_sql_server_edge -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=SQL_password123' -p 1433:1433 mcr.microsoft.com/azure-sql-edge
+### Blazor Server app
 
-Or from Image
-
-    docker build --tag=mydb_17_empty ./DBContainer/Empty-Database
-    docker build --tag=mydb_17_filled ./DBContainer/Server-with-Database
-
-To see al list of images you can run
-    
-    docker images
-
-
-Then Run the image
-
-    docker run --name Sql_17_Empty -p 6617:1433 --volume mydb_17_empty:/var/opt/sqlserver -it -d mydb_17_empty
-    docker run --name Sql_17_Filled -p 6618:1433 --volume mydb_17_filled:/var/opt/sqlserver -it -d mydb_17_filled
-
-
-## Blazor Server app
-
-Or from Image
+Build from Image
 
     docker build --tag=my_blazor_app ./BlazorInABox
 
@@ -53,14 +36,44 @@ Then Run the image
 
     docker run --name blazor_app -p 5080:80 -d my_blazor_app
 
+You can then test the app by going to http://localhost:5080
 
-## Linux Basics
 
-Copy files to container
+## Story 2 : Database Server from a Dockerfile, and learning Linux basics
 
-    docker cp "C:\Work\Talks\Docker-is-a-Gateway-Drug\db\Umbraco.bak" ddd_sql_server_2019:/var/opt/mssql/data/Umbraco.bak
+### To run empty database server
 
-Restore the Database
+To build from a docker file, with an empty database
+
+    docker build --tag=mydb_17_empty ./DBContainer/Empty-Database
+
+To see al list of images you can run
+    
+    docker images
+
+Then Run the image
+
+    docker run --name Sql_17_Empty -p 6617:1433 --volume mydb_17_empty:/var/opt/sqlserver -it -d mydb_17_empty
+
+### Copy files to container
+
+Run this to copy the file
+
+    docker cp ./db/Umbraco.zip Sql_17_Empty:/var/opt/mssql/data/Umbraco.zip
+
+Then connect to the container
+
+    docker exec -it Sql_17_Empty bash
+
+Then run this to unzip the file
+
+    unzip /var/opt/mssql/data/Umbraco.zip -d /var/opt/mssql/data/
+
+Connect to the sql server with the following connectionstring
+
+    Server=localhost,6617;Database=master;User Id=sa;Password=SQL_password123;
+
+Restore the Database with the following SQL
 
     ----Restore Database
     declare @dbName nvarchar(50)
@@ -78,6 +91,20 @@ Restore the Database
     WITH MOVE 'DrinkstuffUmbraco' TO @mdfFile,
     MOVE 'DrinkstuffUmbraco_log' TO  @ldfFile
 
+### To run a pre-populated database server
+
+To build from a docker file, with an empty database
+
+    docker build --tag=mydb_17_filled ./DBContainer/Server-with-Database
+
+To see al list of images you can run
+    
+    docker images
+
+Then Run the image
+
+    docker run --name Sql_17_Filled -p 6618:1433 --volume mydb_17_filled:/var/opt/sqlserver -it -d mydb_17_filled
+
 
 ## Preview Framework
 
@@ -85,8 +112,7 @@ Restore the Database
 
 To run : 
 
-    docker pull mcr.microsoft.com/dotnet/nightly/sdk:7.0
-    docker run -it -d --name dotNetPreview mcr.microsoft.com/dotnet/nightly/sdk:7.0
+    docker run -it -d --name dotNetPreview mcr.microsoft.com/dotnet/nightly/sdk:8.0.100-preview.4-jammy-amd64
     docker exec -it dotNetPreview bash
 
 Create a new app
@@ -96,6 +122,21 @@ Create a new app
     dotnet new console --name appTest
 
     dotnet run --project appTest/ 
+
+
+## Story 3 : Running a bunch of other services
+
+To Run a container with Rabbit MQ
+
+    docker run -d --hostname my-rabbit --name some-rabbit -p 5672:5672 -p 15672:15672 -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password rabbitmq:3-management
+
+To Run a container with Redis
+
+    docker run -d --name redis -p 6379:6379 redis
+
+To Run a container with MongoDb
+
+    docker run -d --name mongo -p 27017:27017 mongo
 
 ## Dooom!
 

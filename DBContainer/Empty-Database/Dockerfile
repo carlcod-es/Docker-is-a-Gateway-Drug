@@ -5,6 +5,8 @@ ENV SA_PASSWORD=SQL_password123
 ENV MSSQL_PID=Express
 
 USER root
+
+RUN apt-get update && apt-get install -y unzip
  
 RUN mkdir /var/opt/sqlserver
  
