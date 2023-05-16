@@ -166,11 +166,3 @@ You can also connect VS Code and test the app further
 
     User : kasm_user
     Password: password
-
-
-# Junk below here
-
-## Doom fallback
-
-    docker pull kasmweb/doom:1.9.0
-    docker run --rm  -it --shm-size=512m -p 6901:6901 -e VNC_PW=password kasmweb/doom:1.9.0
