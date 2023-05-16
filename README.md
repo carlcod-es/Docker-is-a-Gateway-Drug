@@ -11,7 +11,7 @@ Also as a lightning talk at DotNet South West
 
 [Slides](https://docs.google.com/presentation/d/1TLiaYMO5733RNAkDaAa74AgXPE6cu_xbR4a-YqWzBNc/edit#slide=id.g13779d8b915_0_12)
 
-## Story 1 : Database Server directly from Iamge
+## Story 1 : Database Server directly from Image
 
 SQL Server
 
