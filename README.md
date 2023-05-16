@@ -109,15 +109,15 @@ Then Run the image
 
 To Run a container with Rabbit MQ
 
-    docker run -d --hostname my-rabbit --name some-rabbit -p 5672:5672 -p 15672:15672 -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password rabbitmq:3-management
+    docker run -d --hostname dgd-rabbitMq --name some-rabbit -p 5672:5672 -p 15672:15672 -e RABBITMQ_DEFAULT_USER=user -e RABBITMQ_DEFAULT_PASS=password rabbitmq:3-management
 
 To Run a container with Redis
 
-    docker run -d --name redis -p 6379:6379 redis
+    docker run -d --name dgd-redis -p 6379:6379 redis
 
 To Run a container with MongoDb
 
-    docker run -d --name mongo -p 27017:27017 mongo
+    docker run -d --name dgd-mongo -p 27017:27017 mongo
 
 ## Story 4 - Onboarding a new developer
 
