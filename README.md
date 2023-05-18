@@ -166,3 +166,11 @@ You can also connect VS Code and test the app further
 
     User : kasm_user
     Password: password
+
+
+# Notes :
+
+These are for me, for new things, or stuff I'll add
+
+ - https://code.visualstudio.com/docs/remote/ssh
+    - https://code.visualstudio.com/docs/remote/containers
