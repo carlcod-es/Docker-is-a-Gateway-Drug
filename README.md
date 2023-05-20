@@ -136,6 +136,10 @@ You can then connect to the back end using the username admin@admin.com and the 
     http://localhost:5080/umbraco
 
 
+docker compose up with no cache you run
+
+    docker-compose up --build --no-cache -d
+
 ## Story 10 - Preview Framework
 
 - https://hub.docker.com/_/microsoft-dotnet-nightly-sdk/
